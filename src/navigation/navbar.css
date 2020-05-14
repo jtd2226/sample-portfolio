@@ -1,4 +1,5 @@
 .navbar {
+    flex: 0 1 auto;
     color: #efefef;
     width: 100vw;
     display: flex;
@@ -11,16 +12,11 @@
 
 .NavButton {
     flex: 1;
-    padding: 8px;
-    border-right: 1px solid #e4e4e4;
-    background-color: #ee6e72;
+    padding: 12px;
+    background-color: #63b0ee;
     text-align: center;
     cursor: pointer;
-    transition: 0.5s;
-}
-
-.NavButton:last-child {
-    border: none;
+    transition: 0.2s ease-in;
 }
 
 .NavButton:hover {
@@ -32,14 +28,31 @@
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
+.NavButton.selected {
+    border-right: 10px solid #e9afe3;
+    border-left: 10px solid #e9afe3;
+}
+
 .NavBody {
-    width: 100%;
     height: 100%;
     display: flex;
-    align-items: center; 
+    align-items: center;
     justify-content: center; 
     text-align: center;
     flex-direction: column;
+}
+
+.bgSawtooth {
+    animation: sawtooth 1s infinite linear;
+    background: linear-gradient(45deg, #88d6f3 2em, transparent 2em) 0 0 / 4em 4em,
+                linear-gradient(-45deg, #88d6f3 2em, transparent 2em) 0 0 / 4em 4em;
+    background-color: #00baff;
+}
+
+.bgSlanties {
+  background: repeating-linear-gradient(45deg, #82f6d8 0, #82f6d8 10px, #f6afc9 20px, transparent 30px);
+  animation: stripes-move 0.75s infinite linear;
+  background-color: #efefef;
 }
 
 .bgBlue {
@@ -47,7 +60,7 @@
 }
 
 .bgGreen {
-    background-color: green;
+    background-color: #7cf07fc2;
     color: white;
     font-size: xx-large;
 }
@@ -62,4 +75,16 @@
 
 .bgRed {
     background-color: red;
+}
+
+@keyframes stripes-move {
+    100% {
+        background-position: 5em 0px;
+    }
+}
+  
+@keyframes sawtooth {
+    100% {
+        background-position: 4em 0, 4em 4em;
+    }
 }

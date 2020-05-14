@@ -11,4 +11,18 @@ function App() {
   );
 }
 
+class Iframe extends React.Component {
+  render() {
+    return (
+      <iframe title="frame"
+              src={this.props.src}
+              frameBorder="0" 
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+              allowFullScreen>
+     </iframe>
+    )
+  }
+}
+
 export default App;
+export {Iframe};

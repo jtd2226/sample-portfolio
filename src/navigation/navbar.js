@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import { gsap, TimelineLite } from 'gsap/all';
+import { Iframe } from '../App'
 import './navbar.css';
 
 function Animation() {
     const navBody = document.getElementById("navBody");
-    let animation = new TimelineLite({onComplete: () => {
+    const animation = new TimelineLite({onComplete: () => {
         animation.pause();
         animation.progress(0);
         navBody.style = "";
@@ -27,21 +28,24 @@ function renderBody(element) {
         .play();
 }
 
+const googleMapsUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3471.7839936992755!2d-98.55656528450163!3d29.52265478207502!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x865c60a37282e1f1%3A0x37cdd47cd27f5da3!2s8511%20Rockmoor%2C%20San%20Antonio%2C%20TX%2078230!5e0!3m2!1sen!2sus!4v1587334744014!5m2!1sen!2sus";
+const lateJuly = "https://www.youtube.com/embed/DR6TtBmJ-CE?autoplay=1&mute=1";
+
 const home = <div className="NavBody bgGreen"> Home </div>;
-const page2 = <div className="NavBody bgRed"></div>;
-const page3 = <div className="NavBody bgBlue"></div>;
-const page4 = <div className="NavBody bgPurple"></div>;
-const page5 = <div className="NavBody bgOrange"></div>;
+const page4 = <div className="NavBody bgSawtooth"></div>;
+const page5 = <div className="NavBody"></div>;
 
 class Navbar extends React.Component {
     render() {
+      const location = <Iframe src={googleMapsUrl}></Iframe>
+      const mia = <Iframe src={lateJuly}></Iframe>
       return (
         <div className="navbar">
             <NavButton body={home}> Home </NavButton>
-            <NavButton body={page2}> Red </NavButton>
-            <NavButton body={page3}> Blue </NavButton>
-            <NavButton body={page4}> Purple </NavButton>
-            <NavButton body={page5}> Orange </NavButton>
+            <NavButton body={location}> Location </NavButton>
+            <NavButton body={mia}> Video </NavButton>
+            <NavButton body={page4}> Trip </NavButton>
+            <NavButton body={page5}> Ballz </NavButton>
         </div>
       );
     }
@@ -54,10 +58,16 @@ class Navbar extends React.Component {
 class NavButton extends React.Component {
     render() {
         return (
-            <span className={"NavButton"} onClick={e => renderBody(this.props.body)}>
+            <span className="NavButton" onClick={this.handleClick}>
                 {this.props.children}
             </span>
         )
+    }
+
+    handleClick = event => {
+        document.querySelectorAll('.NavButton.selected').forEach(x => x.classList.remove('selected'));
+        event.target.classList.add('selected');
+        renderBody(this.props.body);
     }
 }
 

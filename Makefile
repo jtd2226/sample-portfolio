@@ -1,5 +1,9 @@
 run: 
 	npm start
 
-hello: 
-	echo hello
+deploy: 
+	npm run build
+	npm run deploy
+
+revert:
+	git checkout -- .
