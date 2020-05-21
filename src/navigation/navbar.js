@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+import Visualizer from '../3DStuff/visualizer'
 import { gsap, TimelineLite } from 'gsap/all';
 import { Iframe } from '../App'
 import './navbar.css';
@@ -22,9 +23,6 @@ function renderBody(element) {
         .to(navBody, 0.3, {x: -2000, opacity: 0})
         .to(navBody, 0, {x: 2000, onComplete: () => ReactDom.render(element, navBody)})
         .to(navBody, 0.4, {x: 0, opacity: 1, ease: "elastic.out(.75, 1)"})
-        // .to(navBody, 0, {rotationZ: 180, rotationY: 180})
-        // .to(navBody, 0.2, {rotationX: 90, onComplete: () => ReactDom.render(element, navBody)})
-        // .to(navBody, 0.2, {rotationX: 180})
         .play();
 }
 
@@ -33,7 +31,7 @@ const lateJuly = "https://www.youtube.com/embed/DR6TtBmJ-CE?autoplay=1&mute=1";
 
 const home = <div className="NavBody bgGreen"> Home </div>;
 const page4 = <div className="NavBody bgSawtooth"></div>;
-const page5 = <div className="NavBody"></div>;
+const page5 = <Visualizer></Visualizer>;
 
 class Navbar extends React.Component {
     render() {
