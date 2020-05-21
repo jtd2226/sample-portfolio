@@ -29,35 +29,40 @@ class Visualizer extends React.Component {
     
     this.renderer = new THREE.WebGLRenderer();
     this.renderer.setSize( this.W, this.H );
+    this.renderer.setPixelRatio(window.devicePixelRatio)
     this.renderer.shadowMap.enabled = true;
 
     this.mount.appendChild( this.renderer.domElement );
 
     this.bars = [];
     for(var i = 0; i < 1600; i++) {
-        const height = randomNumberInRange(1, 10)
-        const size = 3
-		const geometry = new THREE.BoxGeometry(size, height, size)
-        const material = new THREE.MeshPhongMaterial({
-            color: getRandomValueFromArray(COLOR_PALETTE),
-            emissive: getRandomValueFromArray(COLOR_PALETTE),
-            shininess: 100,
-            specular: 0xfff
-        })
-		const mesh = new THREE.Mesh(geometry, material)
-		mesh.position.x = ((i % 40) * size) - 60
-		mesh.position.y = -5
-		mesh.position.z = ((i / 40) * size) - 50
-        mesh.castShadow = true
-        this.bars.push(mesh);
-		this.scene.add(mesh)
+      const height = randomNumberInRange(1, 10)
+      const size = 3
+      const geometry = new THREE.BoxGeometry(size, height, size)
+      const material = new THREE.MeshPhongMaterial({
+          color: getRandomValueFromArray(COLOR_PALETTE),
+          emissive: getRandomValueFromArray(COLOR_PALETTE),
+          shininess: 100,
+          specular: 0xfff
+      })
+      const mesh = new THREE.Mesh(geometry, material)
+      mesh.position.x = ((i % 40) * size) - 60
+      mesh.position.y = -5
+      mesh.position.z = ((i / 40) * size) - 50
+          mesh.castShadow = true
+          this.bars.push(mesh);
+      this.scene.add(mesh)
     }
 
     window.addEventListener('resize', () => { this.onResize() });
-    this.setupAudio()
+    window.onclick = () => { this.setupAudio() }
+    // this.setupAudio()
+    this.renderer.render( this.scene, this.camera );
   }
 
   setupAudio = () => {
+    window.onclick = null;
+    var AudioContext = window.AudioContext || window.webkitAudioContext; 
     const audioCtx = new AudioContext()
     const analyser = audioCtx.createAnalyser()
     this.frequencyData = new Uint8Array(analyser.frequencyBinCount)    

@@ -16,7 +16,7 @@ html, body, #app, #root {
   background: radial-gradient(circle, #f6afc9 43%, transparent 0) 0 0 / 4em 4em, 
   radial-gradient(circle, #f6afc9 43%, transparent 0) 2em 2em / 8em 8em;
   /* animation: pulse 3s linear infinite; */
-  
+
   background-color: #ffeafe;
 }
 
