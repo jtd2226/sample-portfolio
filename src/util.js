@@ -14,3 +14,7 @@ export function getRandomColor() {
 export function getRandomValueFromArray(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
 }
+
+export function randomPercentage(val) {
+    return Math.random() < val;
+}

@@ -4,6 +4,7 @@ import Visualizer from '../3DStuff/visualizer'
 import { gsap, TimelineLite } from 'gsap/all';
 import { Iframe } from '../App'
 import './navbar.css';
+import song from "../music/disclosureEWM.mp3"
 
 function Animation() {
     const navBody = document.getElementById("navBody");
@@ -31,7 +32,7 @@ const lateJuly = "https://www.youtube.com/embed/DR6TtBmJ-CE?autoplay=1&mute=1";
 
 const home = <div className="NavBody bgGreen"> Home </div>;
 const page4 = <div className="NavBody bgSawtooth"></div>;
-const page5 = <Visualizer></Visualizer>;
+const page5 = <Visualizer song={song}></Visualizer>;
 
 class Navbar extends React.Component {
     render() {
